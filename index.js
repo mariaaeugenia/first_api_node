@@ -1,0 +1,1 @@
+console.log("[1] MEU AMBIENTE: ", process.env.NODE_ENV)
