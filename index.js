@@ -1,39 +1,18 @@
 const express = require('express')
 const app = express()
-//FIREBASE
-// const firebase = require('firebase')
-// const firebaseConfig = require('./config/firebase')
-// const firebaseApp = firebase.initializeApp(firebaseConfig)
-// const db = firebaseApp.firestore()
+
 
 //BODY PARSER
 const bodyParser = require('body-parser')
 
-const createToken = require('./utils/createToken')
+
 const verifyToken = require('./middlewares/verifyToken')
 
 
 //SIGN IN WITH EMAIL AND PASSWORD
-// app.use(bodyParser.json())
-// app.post('/auth', (request, response, next) => {
-//   db.collection('users')
-//   .where('email', '==', request.body.email)
-//   .where('password', '==', request.body.password)
-//   .get()
-//     .then(users => {
-//       if (users.empty) {
-//         const message = {message:'Login failed'}
-//         return response
-//           .status(401)
-//           .send(message)
-//       }
-//       const [{ id }] = users.docs
-//       response.json({token: createToken({ id }) })
-//     })
-//     .catch(err =>  {
-//       response.json( err )
-//     })
-// })
+const Auth = require('./controllers/Auth')
+app.use(bodyParser.json())
+app.post('/auth', Auth.auth)
 
 //SINGLE USER
 const Users = require('./controllers/UsersController')
