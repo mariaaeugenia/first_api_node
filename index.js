@@ -4,19 +4,16 @@ const app = express()
 
 //BODY PARSER
 const bodyParser = require('body-parser')
-
-
-const verifyToken = require('./middlewares/verifyToken')
-
+app.use(bodyParser.json())
 
 //SIGN IN WITH EMAIL AND PASSWORD
 const Auth = require('./controllers/Auth')
-app.use(bodyParser.json())
 app.post('/auth', Auth.auth)
 
 //SINGLE USER
-const Users = require('./controllers/UsersController')
-app.get('/users/:id', Users.getById)
+const routes = require('./routes')
+app.use(routes)
+
 
 // let data = {
 //   name: 'Kara Denvers',
